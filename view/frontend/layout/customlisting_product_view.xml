@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.main">
+            <block class="Custom\Productlisting\Block\Navigation\Vendor" name="catalog.leftnav" before="-" template="Magento_LayeredNavigation::layer/view.phtml">
+                <block class="Magento\LayeredNavigation\Block\Navigation\State" name="catalog.navigation.state" as="state" />
+                <block class="Magento\LayeredNavigation\Block\Navigation\FilterRenderer" name="catalog.navigation.renderer" as="renderer" template="Magento_LayeredNavigation::layer/filter.phtml"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Custom\Productlisting\Block\Product\View" name="custom.product.list" template="Custom_Productlisting::list.phtml" >
+                <block class="Magento\Catalog\Block\Product\ProductList\Item\Container" name="category.product.addto" as="addto">
+                    <block class="Magento\Catalog\Block\Product\ProductList\Item\AddTo\Compare"
+                           name="category.product.addto.compare" as="compare"
+                           template="Magento_Catalog::product/list/addto/compare.phtml"/>
+                </block>
+                <block class="Custom\Productlisting\Block\Product\ProductList\Toolbar" name="custom_product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                    <block class="Magento\Theme\Block\Html\Pager" name="product_list_toolbar_pager"/>
+                </block>
+                <action method="setToolbarBlockName">
+                    <argument name="name" xsi:type="string">custom_product_list_toolbar</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
